@@ -12,6 +12,15 @@ public class ArraySequence{
     currentIndex = data[0];
   }
 
-  
+  public int length(){
+    return data.length;
+  }
+
+  public boolean hasNext(){
+    if(currentIndex > data[data.length - 1]){
+      return false;
+    }
+    return true;
+  }
 
 }
