@@ -1,11 +1,11 @@
 import java.util.NoSuchElementException;
-public class ArraySequence{
+public class ArraySequence implements IntegerSequence{
   private int currentIndex;
   private int[] data;
 
   public ArraySequence(int[] other){
     data = other;
-    currentIndex = data[0];
+    currentIndex = 0;
   }
 
   public void reset(){
@@ -17,10 +17,19 @@ public class ArraySequence{
   }
 
   public boolean hasNext(){
-    if(currentIndex > data[data.length - 1]){
+    if(currentIndex > data.length - 1){
       return false;
     }
     return true;
+  }
+
+  public int next(){
+    int now = data[currentIndex];
+    currentIndex++;
+    if(currentIndex > data.length){
+      throw new NoSuchElementException("No more values");
+    }
+    return now;
   }
 
 }
