@@ -8,8 +8,16 @@ public class ArraySequence implements IntegerSequence{
     currentIndex = 0;
   }
 
+  public ArraySequence(IntegerSequence otherseq){
+    otherseq.reset();
+    data = new int[otherseq.length()];
+    for(int i = 0;i < otherseq.length();i++){
+      data[i] = otherseq.next();
+    }
+  }
+
   public void reset(){
-    currentIndex = data[0];
+    currentIndex = 0;
   }
 
   public int length(){
@@ -24,12 +32,13 @@ public class ArraySequence implements IntegerSequence{
   }
 
   public int next(){
-    int now = data[currentIndex];
-    currentIndex++;
     if(currentIndex > data.length){
       throw new NoSuchElementException("No more values");
     }
+    int now = data[currentIndex];
+    currentIndex++;
     return now;
   }
+
 
 }
